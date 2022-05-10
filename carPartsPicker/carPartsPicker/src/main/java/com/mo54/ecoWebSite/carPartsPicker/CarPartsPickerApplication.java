@@ -1,4 +1,4 @@
-package com.example.carPartsPicker;
+package com.mo54.ecoWebSite.carPartsPicker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
