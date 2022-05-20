@@ -2,12 +2,17 @@ package com.MO54.carPartsPicker.services;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.MO54.carPartsPicker.model.SubCategory;
 import com.MO54.carPartsPicker.repository.SubCategoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class SubCategoryImplementation implements SubCategoryService {
+@Service
+@Transactional
+public class SubCategoryServiceImplementation implements SubCategoryService {
 
     @Autowired
     SubCategoryRepository subCategoryRepository;
@@ -29,7 +34,7 @@ public class SubCategoryImplementation implements SubCategoryService {
 
     @Override
     public void deleteSubCategory(int id) {
-
+        subCategoryRepository.deleteById(id);
     }
 
 }

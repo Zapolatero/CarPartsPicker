@@ -27,6 +27,11 @@ public class MainCategory extends Category {
         super(id, name, carParts);
     }
 
+    public MainCategory(int id, String name, Set<CarPart> carParts, Set<SubCategory> subCategories) {
+        super(id, name, carParts);
+        this.subCategories = subCategories;
+    }
+
     public Set<SubCategory> getSubCategories() {
         return subCategories;
     }

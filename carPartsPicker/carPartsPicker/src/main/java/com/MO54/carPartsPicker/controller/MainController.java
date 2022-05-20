@@ -1,9 +1,18 @@
 package com.MO54.carPartsPicker.controller;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.MO54.carPartsPicker.model.CarPart;
+import com.MO54.carPartsPicker.model.MainCategory;
+import com.MO54.carPartsPicker.model.SubCategory;
+import com.MO54.carPartsPicker.repository.SubCategoryRepository;
 import com.MO54.carPartsPicker.services.CarPartService;
+import com.MO54.carPartsPicker.services.MainCategoryServiceImplementation;
+import com.MO54.carPartsPicker.services.MainCategoryService;
+import com.MO54.carPartsPicker.services.SubCategoryServiceImplementation;
+import com.MO54.carPartsPicker.services.SubCategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,14 +26,16 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainController {
 
     @Autowired
-    CarPartService carPartService;
+    private CarPartService carPartService;
+    @Autowired
+    private MainCategoryServiceImplementation mainCategoryService;
+    @Autowired
+    private SubCategoryServiceImplementation subCategoryService;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView List() {
         ModelAndView model = new ModelAndView("index");
-        List<CarPart> carPartsList = carPartService.getAllCarParts();
-        model.addObject("carPartsList", carPartsList);
-
+        model.addObject("mainCategoriesList", mainCategoryService.getAllMainCategories());
         return model;
     }
 

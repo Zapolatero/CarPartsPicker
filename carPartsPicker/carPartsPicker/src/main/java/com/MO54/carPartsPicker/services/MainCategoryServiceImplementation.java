@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class MainCategoryImplementation implements MainCategoryService {
+public class MainCategoryServiceImplementation implements MainCategoryService {
 
     @Autowired
     MainCategoryRepository mainCategoryRepository;

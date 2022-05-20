@@ -7,8 +7,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.mozilla.javascript.tools.shell.Main;
-
 @Entity
 @Table
 @PrimaryKeyJoinColumn(name = "id")
@@ -24,6 +22,10 @@ public class SubCategory extends Category {
 
     public SubCategory(MainCategory mainCategory) {
         this.mainCategory = mainCategory;
+    }
+
+    public SubCategory() {
+
     }
 
     public MainCategory getMainCategory() {
