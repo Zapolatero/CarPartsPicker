@@ -1,12 +1,10 @@
-package com.mo54.ecoWebSite.carPartsPicker.model;
+package com.MO54.carPartsPicker.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.mo54.ecoWebSite.carPartsPicker.CarPartsPickerApplication;
 
 import org.hibernate.annotations.CollectionId;
 
