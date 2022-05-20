@@ -22,8 +22,8 @@ public class MainController {
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView List() {
         ModelAndView model = new ModelAndView("index");
-        List<CarPart> cartPartsList = carPartService.getAllCarParts();
-        model.addObject("carPartsLists", cartPartsList);
+        List<CarPart> carPartsList = carPartService.getAllCarParts();
+        model.addObject("carPartsList", carPartsList);
 
         return model;
     }
