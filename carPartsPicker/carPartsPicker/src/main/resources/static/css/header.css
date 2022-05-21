@@ -1,0 +1,14 @@
+.header{
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+    justify-content: center;
+    background-color:slategrey;
+}
+
+body {
+    margin: 0px !important;
+}

@@ -1,0 +1,12 @@
+body {
+    margin: 0px !important;
+    background-color:honeydew;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+

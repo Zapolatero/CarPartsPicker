@@ -1,19 +1,46 @@
 <html>
-    <header>
-        <h1>Car parts picker</h1>
-    </header>
+    <head>
+        <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/carPartsList.css">
+    <link rel="stylesheet" href="css/categoryPicker.css">
+    </head>
     <body>
+        <div class="header">
+            <a href="/SpringRestHibernate/index" ><span>Car parts picker </span></a>
+        </div>
+        <div class="navbar" >
+            <div th:each="mainCat : ${mainCategoriesList}">
+                <a th:if="${mainCat.subCategories.size()<=0}" th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ mainCat.id}"><span th:text="${mainCat.name}"></span></a>
+                <div th:if="${mainCat.subCategories.size()>1}" class="dropdown">
+                    <button class="dropbtn" th:text="${mainCat.name}">
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div  class="dropdown-content">
+                        <div th:each="subCat : ${mainCat.subCategories}">
+                            <a th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ subCat.id}" ><span th:text="${subCat.name}"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
-            TEST PRODUITS PAR CATEGORIES
-            <ul>
-                <h3 th:text="${categoryName}"></h3>
-                <li th:each="carPart : ${carPartsList}">
-                    <div><span th:text="${carPart.name}"></span></div>
-                    <div>Prix : <span th:text="${carPart.price}"></span> € </div>
-                    <div>Poids : <span th:text="${carPart.weight}"></span> kg </div>
-                    <div><img width="100" height="100" th:src="@{${carPart.imageUrl}}"></div>
-                </li>
-            </ul>
+            <div>
+                <div class="category_name">Products in <span th:text="${categoryName}"></span></div>
+                <div class="container">
+                <section class="wrapper">
+                    <div class="list_item" th:each="carPart : ${carPartsList}">
+                        <div><img class="carpart_image" th:src="@{${carPart.imageUrl}}"></div>
+                        <div class="data_container">
+                            <div><span class="carpart_name" th:text="${carPart.name}"></span></div>
+                            <div><span class="data_label">Price : </span><span th:text="${carPart.price}"></span> € </div>
+                            <div><span class="data_label">Weight : </span><span th:text="${carPart.weight}"></span> kg </div>
+                        </div>
+                        <button class="add_button"><img width="30" height="30" src="img/cart-plus.png"></button>
+                    </div>
+                </section>
+            </div>
+            </div>
         </div>
     </body>
     <footer>

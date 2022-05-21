@@ -40,6 +40,7 @@ public class MainController {
         Category requestedCategory = categoryService.getCategoryById(categoryId);
         model.addObject("categoryName", requestedCategory.getName());
         model.addObject("carPartsList", requestedCategory.getCarParts());
+        model.addObject("mainCategoriesList", mainCategoryService.getAllMainCategories());
         return model;
     }
 
