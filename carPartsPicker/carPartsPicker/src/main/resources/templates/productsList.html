@@ -1,0 +1,22 @@
+<html>
+    <header>
+        <h1>Car parts picker</h1>
+    </header>
+    <body>
+        <div>
+            TEST PRODUITS PAR CATEGORIES
+            <ul>
+                <h3 th:text="${categoryName}"></h3>
+                <li th:each="carPart : ${carPartsList}">
+                    <div><span th:text="${carPart.name}"></span></div>
+                    <div>Prix : <span th:text="${carPart.price}"></span> € </div>
+                    <div>Poids : <span th:text="${carPart.weight}"></span> kg </div>
+                    <div><img width="100" height="100" th:src="@{${carPart.imageUrl}}"></div>
+                </li>
+            </ul>
+        </div>
+    </body>
+    <footer>
+        
+    </footer>
+</html>
