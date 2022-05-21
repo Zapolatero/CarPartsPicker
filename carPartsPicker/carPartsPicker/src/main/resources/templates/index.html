@@ -21,12 +21,13 @@
                     <h3 th:text="${mainCat.name}"></h3>
                         <li th:each="subCat : ${mainCat.subCategories}">
                             <p th:text="${subCat.name}"></p>
-                            <div th:each="carPart : ${subCat.carParts}">
+                            <!-- je laisse ca la pour l'instant mais on a normalement pas a afficher de produits sur cette page -->
+                            <!-- <div th:each="carPart : ${subCat.carParts}">
                                 <div><span th:text="${carPart.name}"></span></div>
                                 <div>Prix : <span th:text="${carPart.price}"></span> € </div>
                                 <div>Poids : <span th:text="${carPart.weight}"></span> kg </div>
                                 <div><img width="100" height="100" th:src="@{${carPart.imageUrl}}"></div>
-                            </div>
+                            </div> -->
                         </li>
                 </span>
             </ul>
