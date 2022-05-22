@@ -1,10 +1,14 @@
 package com.MO54.carPartsPicker.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.MO54.carPartsPicker.model.CarPart;
 import com.MO54.carPartsPicker.model.Category;
 import com.MO54.carPartsPicker.services.CarPartService;
+import com.MO54.carPartsPicker.services.CarPartServiceImplementation;
 import com.MO54.carPartsPicker.services.CategoryServiceImplementation;
 import com.MO54.carPartsPicker.services.MainCategoryServiceImplementation;
 import com.MO54.carPartsPicker.services.SubCategoryServiceImplementation;
@@ -14,14 +18,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
 
 @Controller
 @CrossOrigin
 public class MainController {
 
     @Autowired
-    private CarPartService carPartService;
+    private CarPartServiceImplementation carPartService;
     @Autowired
     private CategoryServiceImplementation categoryService;
     @Autowired
@@ -67,6 +73,21 @@ public class MainController {
         CarPart requestedCarPart = carPartService.getCarPartById(carPartId);
         model.addObject("carPart", requestedCarPart);
         return model;
+    }
+
+    // A Utiliser pour récupérer un tableau json contenant les pieces dans le
+    // panier
+    // pour l'utiliser : faire une req ajax get en passant l'argument
+    // concatenatedIds qui contient les ids séparés par des ; Ex: 1;2;3;4
+    @RequestMapping(value = "/getBasketItems", method = RequestMethod.GET)
+    public @ResponseBody List<CarPart> getBasketItems(@RequestParam(required = true) String concatenatedIds) {
+        List<CarPart> basketItems = new ArrayList<>();
+
+        for (String id : concatenatedIds.split(";")) {
+            basketItems.add(carPartService.getCarPartById(Integer.parseInt(id)));
+        }
+
+        return basketItems;
     }
 
 }
