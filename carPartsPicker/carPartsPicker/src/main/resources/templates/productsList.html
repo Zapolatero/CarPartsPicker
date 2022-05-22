@@ -36,7 +36,7 @@
                             <div><span class="data_label">Price : </span><span th:text="${carPart.price}"></span> € </div>
                             <div><span class="data_label">Weight : </span><span th:text="${carPart.weight}"></span> kg </div>
                         </div>
-                        <button class="add_button"><img width="30" height="30" src="img/cart-plus.png"></button>
+                        <button onclick="addToBasket(this)" th:value="${carPart.id}" class="add_button"><img width="30" height="30" src="img/cart-plus.png"></button>
                     </div>
                 </section>
             </div>
@@ -47,3 +47,10 @@
         
     </footer>
 </html>
+<script  th:inline="javascript">
+
+    function addToBasket(element){
+        console.log("added carpart id : " + element.value)
+    }
+
+</script>

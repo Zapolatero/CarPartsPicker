@@ -2,3 +2,65 @@ body {
     margin: 0px !important;
 }
 
+form{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    height: 50vh;
+}
+
+input{
+    border: 1px gray solid;
+    border-radius: 5px;
+    font-size: 15px;
+    height: 30px;
+    background-color: white;
+}
+
+.search_category{
+    height: 34px;
+    border: 1px gray solid;
+    border-radius: 5px;
+    font-size: 15px;
+    width: 280px;
+}
+
+.search_bar{
+    background-color: white;
+    padding-left: 4px;
+    width: 350px;
+    height: 30px !important;
+}
+
+.search_bar:hover{
+    border-color: red;
+}
+
+.search_category:hover{
+    border-color: red;
+}
+
+.search_bar:focus {
+    border-color: red !important;
+}
+
+.submit_button{
+    background-color: red;
+    border-color: red;
+    height: 34px;
+    color: white;
+    width: 74px;
+    text-align: center;
+}
+
+.submit_button:hover{
+    border-color: red;
+    opacity: 0.8;
+}
+
+.search_area{
+    display: grid;
+    gap: 10px;
+}

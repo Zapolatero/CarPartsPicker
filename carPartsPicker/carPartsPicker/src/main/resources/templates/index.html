@@ -29,12 +29,16 @@
             </div>
         </div>
     </div>
-    <form class="search_area" action="/SpringRestHibernate/carPartsList" method="get">
-        <input type="text" placeholder="Search..." name="searchQuery">
-        <select  name="categoryId">
-            <option th:each="category : ${nonEmptyCategoriesList}" th:utext="${category.name}" th:value="${category.id}"></option>
-        </select>
-        <input type="submit" text="search">
+    <form  action="/SpringRestHibernate/carPartsList" method="get">
+        <div class="search_area">
+            <input class="search_bar" type="text" placeholder="Search category" name="searchQuery">
+            <div>
+            <select class="search_category"  name="categoryId">
+                <option th:each="category : ${nonEmptyCategoriesList}" th:utext="${category.name}" th:value="${category.id}"></option>
+            </select>
+            <input class="submit_button" type="submit" value="Search">
+        </div>
+        </div>
     </form>
 </body>
 </html>
