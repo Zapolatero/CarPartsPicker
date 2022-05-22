@@ -1,5 +1,7 @@
 package com.MO54.carPartsPicker.controller;
 
+import java.util.stream.Collectors;
+
 import com.MO54.carPartsPicker.model.CarPart;
 import com.MO54.carPartsPicker.model.Category;
 import com.MO54.carPartsPicker.services.CarPartService;
@@ -31,16 +33,31 @@ public class MainController {
     public ModelAndView List() {
         ModelAndView model = new ModelAndView("index");
         model.addObject("mainCategoriesList", mainCategoryService.getAllMainCategories());
+        model.addObject("nonEmptyCategoriesList", categoryService.getAllCategories().stream()
+                .filter(category -> category.getCarParts().size() > 0).collect(Collectors.toList()));
         return model;
     }
 
     @RequestMapping(value = "/carPartsList", method = RequestMethod.GET)
-    public ModelAndView listCarPartsByCategory(@RequestParam(required = true) Integer categoryId) {
+    public ModelAndView listCarPartsByCategory(@RequestParam(required = true) Integer categoryId,
+            @RequestParam(required = false) String searchQuery) {
+
         ModelAndView model = new ModelAndView("productsList");
         Category requestedCategory = categoryService.getCategoryById(categoryId);
+
         model.addObject("categoryName", requestedCategory.getName());
-        model.addObject("carPartsList", requestedCategory.getCarParts());
+
+        if (searchQuery == null) {
+            model.addObject("carPartsList", requestedCategory.getCarParts());
+        } else {
+            model.addObject("carPartsList", requestedCategory.getCarParts().stream()
+                    .filter(carPart -> carPart.getName().toLowerCase().contains(searchQuery.toLowerCase()))
+                    .collect(Collectors.toList()));
+            model.addObject("searchQuery", searchQuery);
+        }
+
         model.addObject("mainCategoriesList", mainCategoryService.getAllMainCategories());
+
         return model;
     }
 
