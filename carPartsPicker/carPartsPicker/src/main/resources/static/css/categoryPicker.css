@@ -2,7 +2,8 @@
 .navbar {
     overflow: hidden;
     background-color: #333;
-    font-family: Arial
+    font-family: Arial;
+    width: 100%;
 }
     
     /* Links inside the navbar */
@@ -31,6 +32,32 @@
     background-color: inherit;
     font-family: inherit; /* Important for vertical align on mobile phones */
     margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* basket button */
+.basketClass {
+	text-align: right;
+}
+/* basket button */
+.basket {
+	border: none;
+	border-left: 2px solid #ffffff;
+	position: relative;
+	right: 0px;
+	text-align: center;
+    font-size: 16px;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    color: white;
+    background-color: inherit;
+    font-family: inherit;  /* Important for vertical align on mobile phones  */
+    margin: 0;          /* Important for vertical align on mobile phones */
+}
+
+/* basket button */
+.basket:hover{
+	background-color: red;
 }
     
     /* Add a red background color to navbar links on hover */
