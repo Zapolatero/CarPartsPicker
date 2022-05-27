@@ -3,8 +3,8 @@ package com.MO54.carPartsPicker.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @PrimaryKeyJoinColumn(name = "id")
 public class MainCategory extends Category {
 
-    @OneToMany(mappedBy = "mainCategory")
+    @OneToMany(mappedBy = "mainCategory", fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<SubCategory> subCategories = new HashSet<>();
 
