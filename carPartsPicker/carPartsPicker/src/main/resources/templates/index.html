@@ -9,6 +9,7 @@
     <!-- <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="@{/css/index.css}">
     <link rel="stylesheet" href="@{css/index.css}"> -->
+    <script type="text/javascript" src="js/common.js"></script>
 </head>
 <body>
     <div class="header">
@@ -18,7 +19,7 @@
         <div th:each="mainCat : ${mainCategoriesList}">
             <a th:if="${mainCat.subCategories.size()<=0}" th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ mainCat.id}"><span th:text="${mainCat.name}"></span></a>
             <div th:if="${mainCat.subCategories.size()>1}" class="dropdown">
-                <button class="dropbtn" th:text="${mainCat.name}">
+                <button class="dropbtn" th:text="${mainCat.name}" >
                 <i class="fa fa-caret-down"></i>
                 </button>
                 <div  class="dropdown-content">
@@ -29,7 +30,7 @@
             </div>
         </div>
         <div class= "basketClass">
-	        <button class="basket" th:text="Basket">
+	        <button class="basket" th:text="Basket" onclick="clearBasket()">
 	        <i class="fa fa-caret-down"></i>
 	        </button>
         </div>

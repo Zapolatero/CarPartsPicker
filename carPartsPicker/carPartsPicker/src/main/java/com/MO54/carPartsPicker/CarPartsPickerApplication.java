@@ -9,7 +9,8 @@ import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 @SpringBootApplication
 @Configuration
 @EnableSpringConfigured
-public class CarPartsPickerApplication extends SpringBootServletInitializer {
+public class CarPartsPickerApplication extends SpringBootServletInitializer 
+{
 
     // For localhost use:
     // public static final String PROXYURL = "proxy.utbm.fr";
