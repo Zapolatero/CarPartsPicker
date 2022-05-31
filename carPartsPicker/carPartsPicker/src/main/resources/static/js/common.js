@@ -118,11 +118,15 @@ function askBasketContent()
 		var basketPriceNode = document.createTextNode("price");
 		basketPriceDiv.append(basketPriceNode)
 		
+		var clearBasketDiv = document.createElement("div");
+		clearBasketDiv.setAttribute("class", "menuClearDiv");
+		clearBasketDiv.innerHTML = "<button class=\"clearButton\" onclick=\"clearBasket()\"> clear cart</button>";
 		
 		articleDiv.append(basketEmptyDiv);
 		articleDiv.append(basketNameDiv);
 		articleDiv.append(basketNumberDiv);
 		articleDiv.append(basketPriceDiv);
+		articleDiv.append(clearBasketDiv);
 		newDiv.append(articleDiv);
 			
 			

@@ -82,7 +82,6 @@ public class MainController {
     @RequestMapping(value = "/getBasketItems", method = RequestMethod.GET)
     public @ResponseBody List<CarPart> getBasketItems(@RequestParam(required = true) String concatenatedIds) {
         List<CarPart> basketItems = new ArrayList<>();
-        System.out.println(concatenatedIds);
         for (String id : concatenatedIds.split(";")) 
         {
             basketItems.add(carPartService.getCarPartById(Integer.parseInt(id)));
