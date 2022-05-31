@@ -128,7 +128,7 @@
 
 .deleteButton
 {
-	background-image:url("../img/corbeille.jpg");
+	background-image:url("../img/corbeille.png");
 	background-size: 100%;
 	background-position: left;
 	background-repeat: no-repeat;
@@ -177,7 +177,7 @@
 
 .clearButton
 {
-	background-image:url("../img/corbeille.jpg");
+	background-image:url("../img/corbeille.png");
 	background-size: 100%;
 	background-position: left;
 	background-repeat: no-repeat;

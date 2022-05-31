@@ -211,7 +211,7 @@ function askBasketContent()
 function pay()
 {
 	clearBasket();
-	alert("message");	
+	alert("Nous vous remerçions pour votre achat! \nL'adresse de livraison, l'adresse de facturation et vos coordonnées bancaires ont été automatiquement retrouvées grâce à notre IA greenITLover, permettant de réduire le bilan carbone de votre achat.\n\nVous receverez votre commande d'ici 24h.");	
 }
 
 function deleteItem(id)
@@ -222,7 +222,7 @@ function deleteItem(id)
 	}
 	else if(myList[id] ==0)
 	{
-		console.log("Trying to delete a article not in the basket");
+		console.log("Trying to remove an element that is not in the basket");
 	}
 	else
 	{
