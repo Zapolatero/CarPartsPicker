@@ -211,7 +211,7 @@ function askBasketContent()
 function pay()
 {
 	clearBasket();
-	alert("Nous vous remerçions pour votre achat! \nL'adresse de livraison, l'adresse de facturation et vos coordonnées bancaires ont été automatiquement retrouvées grâce à notre IA greenITLover, permettant de réduire le bilan carbone de votre achat.\n\nVous receverez votre commande d'ici 24h.");	
+	alert("Nous vous remerçions pour votre achat! \nL'adresse de livraison, l'adresse de facturation et vos coordonnées bancaires ont été automatiquement retrouvées grâce à notre IA greenITLover, permettant de réduire le bilan carbone de votre achat.\n\nVotre commande sera livrée par avion et arrivera chez vous d'ici 24h.");	
 }
 
 function deleteItem(id)
