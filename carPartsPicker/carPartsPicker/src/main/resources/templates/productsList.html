@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/categoryPicker.css">
     <script type="text/javascript" src="js/common.js"></script>
     </head>
-    <body>
+    <body onload="addEvents()">
         <div class="header">
             <a href="/SpringRestHibernate/index" ><span>Car parts picker </span></a>
         </div>
@@ -24,6 +24,14 @@
                     </div>
                 </div>
             </div>
+            <div class= "basketClass">
+		        <div class= "dropdown " id = "dropDownMouseOver">
+			        <button class="dropbtn" th:text="Basket">
+			        	<img src="./img/cart.png"/>
+			        </button>
+			        <div  class="dropdown-content" id="basketDropDownContent"></div>
+				</div>
+        	</div>
         </div>
         <div>
             <div>

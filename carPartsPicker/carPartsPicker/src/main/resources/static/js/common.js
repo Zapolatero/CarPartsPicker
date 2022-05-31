@@ -20,14 +20,8 @@ function addToBasket(element)
 	{
 		myList[element.value] = 1;
 	}
-	
-	for(let elements of Object.keys(myList))
-	{
-		console.log("id:" + elements + " nombre:" + myList[elements]);
-	}
     //utilise le localstorage (bdd interne au navigateur) pour stocker l'id des pieces du paniers
     localStorage.setItem('basket', JSON.stringify(myList));
-    console.log("added carpart id : " + element.value)
     
 }
 
@@ -66,7 +60,6 @@ function askBasketContent()
 	{
 		if(myList[element] != null)
 		{
-			console.log(element + ";");
 			args += element + ";";
 		}
 		
@@ -77,16 +70,14 @@ function askBasketContent()
 	httpRequest.onreadystatechange = fillBasket;
 	
     httpRequest.send();
-    console.log(httpRequest); 
     
     function fillBasket()
 	{
-		console.log("réponse bien recu");
 		let basket = document.getElementById("basketDropDownContent");
 		basket.innerHTML = "";
-		if(httpRequest.status != 200)
+		if(httpRequest.status != 200 || httpRequest.readyState!= XMLHttpRequest.DONE)
 		{
-			return httpRequest.status;
+			return null;
 		}
 		
 		response = JSON.parse(httpRequest.responseText);
@@ -94,7 +85,7 @@ function askBasketContent()
 		var newDiv = document.createElement("div");
 		newDiv.className = "basketDiv";
 		newDiv.setAttribute("class", "menubasketDiv");
-		var totalPrice = 0;
+		
 		
 		var articleDiv = document.createElement("div");
 		articleDiv.setAttribute("class", "basketArticleDiv");
@@ -104,32 +95,28 @@ function askBasketContent()
 		
 		var basketNameDiv = document.createElement("div");
 		basketNameDiv.setAttribute("class", "menuNameDiv");
-		var basketNameNode = document.createTextNode("name");
+		var basketNameNode = document.createTextNode("NAME");
 		basketNameDiv.append(basketNameNode)
 		
 		
 		var basketNumberDiv = document.createElement("div");
 		basketNumberDiv.setAttribute("class", "menuNumberDiv");
-		var basketNumberNode = document.createTextNode("amount");
+		var basketNumberNode = document.createTextNode("AMOUNT");
 		basketNumberDiv.append(basketNumberNode)
 		
 		var basketPriceDiv = document.createElement("div");
 		basketPriceDiv.setAttribute("class", "menuPriceDiv");
-		var basketPriceNode = document.createTextNode("price");
+		var basketPriceNode = document.createTextNode("PRICE");
 		basketPriceDiv.append(basketPriceNode)
-		
-		var clearBasketDiv = document.createElement("div");
-		clearBasketDiv.setAttribute("class", "menuClearDiv");
-		clearBasketDiv.innerHTML = "<button class=\"clearButton\" onclick=\"clearBasket()\"> clear cart</button>";
 		
 		articleDiv.append(basketEmptyDiv);
 		articleDiv.append(basketNameDiv);
 		articleDiv.append(basketNumberDiv);
 		articleDiv.append(basketPriceDiv);
-		articleDiv.append(clearBasketDiv);
 		newDiv.append(articleDiv);
 			
-			
+		var totalPrice  = 0;
+		var totalAmount = 0;
 		for(let element of response)
 		{
 			var URL = element.imageUrl;
@@ -137,7 +124,8 @@ function askBasketContent()
 			var number = myList[element.id];
 			var price = element.price;
 			
-			totalPrice += price; 
+			totalPrice += price * number; 
+			totalAmount += number;
 			
 			var articleDiv = document.createElement("div");
 			articleDiv.setAttribute("class", "basketArticleDiv");
@@ -162,14 +150,88 @@ function askBasketContent()
 			var basketPriceNode = document.createTextNode(price*number + "€");
 			basketPriceDiv.append(basketPriceNode)
 			
+			var deleteButtonDiv = document.createElement("div");
+			deleteButtonDiv.setAttribute("class", "deleteButtonDiv");
+			deleteButtonDiv.setAttribute("id", element.id);
+			deleteButtonDiv.innerHTML = "<button class=\"deleteButton\" onclick=\"deleteItem("+  element.id +  ")\"></button>";
 			
 			articleDiv.append(imageDiv);
 			articleDiv.append(basketNameDiv);
 			articleDiv.append(basketNumberDiv);
 			articleDiv.append(basketPriceDiv);
+			articleDiv.append(deleteButtonDiv);
 			newDiv.append(articleDiv);
 		}
+		
+		var lineDiv = document.createElement("div");
+		lineDiv.setAttribute("class", "line");
+		newDiv.append(lineDiv);
+		
+		
+		
+		
+		var totalDiv = document.createElement("div");
+		totalDiv.setAttribute("class", "basketArticleDiv");
+
+		var totalNameDiv = document.createElement("div");
+		totalNameDiv.setAttribute("class", "totalNameDiv");
+		var totalNameNode = document.createTextNode("TOTAL");
+		totalNameDiv.append(totalNameNode)
+		
+		
+		var totalNumberDiv = document.createElement("div");
+		totalNumberDiv.setAttribute("class", "totalNumberDiv");
+		var totalNumberNode = document.createTextNode(totalAmount);
+		totalNumberDiv.append(totalNumberNode)
+		
+		var totalPriceDiv = document.createElement("div");
+		totalPriceDiv.setAttribute("class", "totalPriceDiv");
+		var totalPriceNode = document.createTextNode(totalPrice + "€");
+		totalPriceDiv.append(totalPriceNode)
+		
+		var clearBasketDiv = document.createElement("div");
+		clearBasketDiv.setAttribute("class", "menuClearDiv");
+		clearBasketDiv.innerHTML = "<button class=\"clearButton\" onclick=\"clearBasket()\"></button>";
+
+		totalDiv.append(totalNameDiv);
+		totalDiv.append(totalNumberDiv);
+		totalDiv.append(totalPriceDiv);
+		totalDiv.append(clearBasketDiv);
+		newDiv.append(totalDiv);
+		
+		var payButtonDiv = document.createElement("div");
+		payButtonDiv.setAttribute("class", "basketArticleDiv");
+		payButtonDiv.innerHTML = "<button class=\"payButton\" onclick=\"pay()\"> PAY</button>";
+		newDiv.append(payButtonDiv);
+		
 		basket.innerHTML += newDiv.innerHTML;
 	}
 }
 
+function pay()
+{
+	clearBasket();
+	alert("message");	
+}
+
+function deleteItem(id)
+{
+	if(myList[id] == 1)
+	{
+		myList[id] = null;
+	}
+	else if(myList[id] ==0)
+	{
+		console.log("Trying to delete a article not in the basket");
+	}
+	else
+	{
+		myList[id]--;
+	}
+	localStorage.setItem('basket', JSON.stringify(myList));
+	askBasketContent();
+	
+	let mouseEnter = document.getElementById("dropDownMouseOver");
+	var event = new Event('mouseenter');  
+	mouseEnter.dispatchEvent(event);
+}
