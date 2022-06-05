@@ -30,12 +30,12 @@
                 <div class="container">
                 <section class="wrapper">
                     <div class="list_item" th:each="carPart : ${carPartsList}">
-                        <div><img class="carpart_image" th:src="@{${carPart.imageUrl}}"></div>
+                        <div class="ImgCont"><a th:href="${'/SpringRestHibernate/carPart?carPartId='+carPart.id}"><img class="carpart_image" th:src="@{${carPart.imageUrl}}"></div>
                         <div class="data_container">
                             <div><span class="carpart_name" th:text="${carPart.name}"></span></div>
                             <div><span class="data_label">Price : </span><span th:text="${carPart.price}"></span> € </div>
                             <div><span class="data_label">Weight : </span><span th:text="${carPart.weight}"></span> kg </div>
-                        </div>
+                        </div></a>
                         <button onclick="addToBasket(this)" th:value="${carPart.id}" class="add_button"><img width="30" height="30" src="img/cart-plus.png"></button>
                     </div>
                 </section>

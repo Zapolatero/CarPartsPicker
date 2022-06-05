@@ -1,20 +1,83 @@
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/categoryPicker.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/carPartsList.css">
+</head>
 <html>
-    <head>
-        <link rel="stylesheet" href="css/header.css">
-        <link rel="stylesheet" href="css/common.css">
-    </head>
     <body>
         <div class="header">
             <a href="/SpringRestHibernate/index" ><span>Car parts picker </span></a>
         </div>
-        <div>
-            TEST PAGE PRODUIT
-            <div>
-                <h3 th:text="${carPart.name}"></h3>
-                    <div>Prix : <span th:text="${carPart.price}"></span> € </div>
-                    <div>Poids : <span th:text="${carPart.weight}"></span> kg </div>
-                    <div><img width="100" height="100" th:src="@{${carPart.imageUrl}}"></div>
+        <div class="navbar" >
+        <div th:each="mainCat : ${mainCategoriesList}">
+            <a th:if="${mainCat.subCategories.size()<=0}" th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ mainCat.id}"><span th:text="${mainCat.name}"></span></a>
+            <div th:if="${mainCat.subCategories.size()>1}" class="dropdown">
+                <button class="dropbtn" th:text="${mainCat.name}">
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div  class="dropdown-content">
+                    <div th:each="subCat : ${mainCat.subCategories}">
+                        <a th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ subCat.id}" ><span th:text="${subCat.name}"></span></a>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
+        <div>
+            <div class="category_name">Detailed information about : <span th:text="${carPart.Name}"></span></div>
+            <div class="mainDiv">
+                <div class="produit">
+                    <div class="textDiv"><h3 th:text="${carPart.name}"></h3>
+                        <h3>Price : <span th:text="${carPart.price}"></span> € </h3>
+                        <h3>Weight : <span th:text="${carPart.weight}"></span> kg </h3></div>
+                        <div><img class="partUniqueImg" th:src="@{${carPart.imageUrl}}"></div>
+                        
+                        <div>
+                            <!-- METTRE ICI LE CODE DU BOUTON ICI -->
+                            <button onclick="addToBasket(this)" th:value="${carPart.id}" class="add_button">
+                                <img width="30" height="30" src="img/cart-plus.png">
+                            </button>
+                        </div>
+                </div>
+                
+                    <!-- METTRE LE CODE DE LA DIV DESCRIPTION ICI-->
+                <div class="description">  
+                    <h3 class="descHeader">Product description :</h3>
+                    <div>LGéritole de crucifix de cochonnerie de saint-ciboire de
+                            colon de charogne de batince d'étole de p'tit Jésus de caltor
+                            de doux Jésus de viarge de cossin de torvisse de bâtard de
+                            gériboire de ciarge de purée de boswell de charrue de cimonaque
+                            de sacrament de patente à gosse de sacréfice de câline de
+                            bine de cul de bout d'viarge de cibouleau de saint-sacrament
+                            de Jésus de plâtre de mosus de saint-cimonaque de baptême de
+                            bout d'ciarge de Jésus Marie Joseph de calvinouche de
+                            mautadine de ciboire de maudit de maudite marde.<br>
+                         <br>
+                         Sed laeditur hic coetuum magnificus splendor levitate paucorum
+                            incondita, ubi nati sunt non reputantium, sed tamquam indulta
+                            licentia vitiis ad errores lapsorum ac lasciviam. ut enim Simonides
+                            lyricus docet, beate perfecta ratione vieturo ante alia patriam
+                            esse convenit gloriosam.<br>
+                         <br>
+                         Sed quid est quod in hac causa maxime homines admirentur et reprehendant
+                            meum consilium, cum ego idem antea multa decreverim, que magis ad hominis
+                            dignitatem quam ad rei publicae necessitatem pertinerent? Supplicationem
+                            quindecim dierum decrevi sententia mea. Rei publicae satis erat tot
+                            dierum quot C. Mario ; dis immortalibus non erat exigua eadem gratulatio
+                            quae ex maximis bellis. Ergo ille cumulus dierum hominis est dignitati tributus.<br>
+                         <br>   
+                         Constituendi autem sunt qui sint in amicitia fines et quasi termini diligendi.
+                            De quibus tres video sententias ferri, quarum nullam probo, unam, ut eodem
+                            modo erga amicum adfecti simus, quo erga nosmet ipsos, alteram, ut nostra in
+                            amicos benevolentia illorum erga nos benevolentiae pariter aequaliterque
+                            respondeat, tertiam, ut, quanti quisque se ipse facit, tanti fiat ab amicis.
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </body>
     <footer>

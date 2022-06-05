@@ -76,6 +76,10 @@
     justify-self: center;
 }
 
+.carpart_image:hover{
+	opacity: .5;
+}
+
 .add_button{
     background-color: #0495EB;
     align-self: center;

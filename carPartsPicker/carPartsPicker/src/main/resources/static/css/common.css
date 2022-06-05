@@ -10,3 +10,56 @@ a{
     color: inherit;
 }
 
+.description{
+
+    max-width: 65%;
+    margin-right: 50px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.produit{
+
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    border-radius:20px;
+    background-color: #D2D2D2;
+    min-width: 30%;
+
+    }
+.mainDiv{
+    display: flex;
+    float: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.textDiv {
+	padding:10px;
+}
+@media only screen and (max-width: 800px) {
+.mainDiv {
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}  
+.produit {
+    display: flex;
+    flex-direction: column;
+
+    text-align: LEFT;
+}
+.description{
+	margin: 0px;
+}
+}
+
+.partUniqueImg {
+	width: 100%;
+	padding: 0;
+	 
+}
+
