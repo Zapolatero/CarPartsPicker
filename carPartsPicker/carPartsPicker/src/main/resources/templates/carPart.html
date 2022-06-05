@@ -25,6 +25,14 @@
                 </div>
             </div>
         </div>
+        <div class= "basketClass">
+	        <div class= "dropdown " id = "dropDownMouseOver">
+		        <button class="dropbtn" th:text="Basket" id = "dropDownTest" >
+		        	<img src="./img/cart.png"/>
+		        </button>
+		        <div  class="dropdown-content" id="basketDropDownContent"></div>
+			</div>
+        </div>
     </div>
         <div>
             <div class="category_name">Detailed information about : <span th:text="${carPart.Name}"></span></div>
@@ -36,14 +44,12 @@
                         <div><img class="partUniqueImg" th:src="@{${carPart.imageUrl}}"></div>
                         
                         <div>
-                            <!-- METTRE ICI LE CODE DU BOUTON ICI -->
                             <button onclick="addToBasket(this)" th:value="${carPart.id}" class="add_button">
                                 <img width="30" height="30" src="img/cart-plus.png">
                             </button>
                         </div>
                 </div>
                 
-                    <!-- METTRE LE CODE DE LA DIV DESCRIPTION ICI-->
                 <div class="description">  
                     <h3 class="descHeader">Product description :</h3>
                     <div>LGéritole de crucifix de cochonnerie de saint-ciboire de
