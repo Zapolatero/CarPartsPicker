@@ -9,8 +9,12 @@ import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 @SpringBootApplication
 @Configuration
 @EnableSpringConfigured
+<<<<<<< HEAD
 public class CarPartsPickerApplication extends SpringBootServletInitializer 
 {
+=======
+public class CarPartsPickerApplication extends SpringBootServletInitializer {
+>>>>>>> refs/heads/PageUnique
 
     // For localhost use:
     // public static final String PROXYURL = "proxy.utbm.fr";

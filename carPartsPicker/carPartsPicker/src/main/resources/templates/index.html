@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/common.css">
+<<<<<<< HEAD
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="img"></script>
     
@@ -35,6 +36,29 @@
 		        </button>
 		        <div  class="dropdown-content" id="basketDropDownContent"></div>
 			</div>
+=======
+    <!-- <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="@{/css/index.css}">
+    <link rel="stylesheet" href="@{css/index.css}"> -->
+</head>
+<body>
+    <div class="header">
+        <a href="/SpringRestHibernate/index" ><span>Car parts picker </span></a>
+    </div>
+    <div class="navbar" >
+        <div th:each="mainCat : ${mainCategoriesList}">
+            <a th:if="${mainCat.subCategories.size()<=0}" th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ mainCat.id}"><span th:text="${mainCat.name}"></span></a>
+            <div th:if="${mainCat.subCategories.size()>1}" class="dropdown">
+                <button class="dropbtn" th:text="${mainCat.name}">
+                <i class="fa fa-caret-down"></i>
+                </button>
+                <div  class="dropdown-content">
+                    <div th:each="subCat : ${mainCat.subCategories}">
+                        <a th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ subCat.id}" ><span th:text="${subCat.name}"></span></a>
+                    </div>
+                </div>
+            </div>
+>>>>>>> refs/heads/PageUnique
         </div>
     </div>
     <form  action="/SpringRestHibernate/carPartsList" method="get">

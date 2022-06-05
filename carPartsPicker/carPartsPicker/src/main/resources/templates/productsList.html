@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/carPartsList.css">
     <link rel="stylesheet" href="css/categoryPicker.css">
+<<<<<<< HEAD
     <script type="text/javascript" src="js/common.js"></script>
     </head>
     <body onload="addEvents()">
@@ -58,3 +59,56 @@
 </html>
 
 
+=======
+    </head>
+    <body>
+        <div class="header">
+            <a href="/SpringRestHibernate/index" ><span>Car parts picker </span></a>
+        </div>
+        <div class="navbar" >
+            <div th:each="mainCat : ${mainCategoriesList}">
+                <a th:if="${mainCat.subCategories.size()<=0}" th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ mainCat.id}"><span th:text="${mainCat.name}"></span></a>
+                <div th:if="${mainCat.subCategories.size()>1}" class="dropdown">
+                    <button class="dropbtn" th:text="${mainCat.name}">
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div  class="dropdown-content">
+                        <div th:each="subCat : ${mainCat.subCategories}">
+                            <a th:href="${'/SpringRestHibernate/carPartsList?categoryId='+ subCat.id}" ><span th:text="${subCat.name}"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div class="category_name">Products in <span th:text="${categoryName}"></span> <span th:if="${searchQuery!=null && !searchQuery.isEmpty()}" th:text="${'for search query : ' + searchQuery}"></span></div>
+                <div class="container">
+                <section class="wrapper">
+                    <div class="list_item" th:each="carPart : ${carPartsList}">
+                        <div class="ImgCont"><a th:href="${'/SpringRestHibernate/carPart?carPartId='+carPart.id}"><img class="carpart_image" th:src="@{${carPart.imageUrl}}"></div>
+                        <div class="data_container">
+                            <div><span class="carpart_name" th:text="${carPart.name}"></span></div>
+                            <div><span class="data_label">Price : </span><span th:text="${carPart.price}"></span> € </div>
+                            <div><span class="data_label">Weight : </span><span th:text="${carPart.weight}"></span> kg </div>
+                        </div></a>
+                        <button onclick="addToBasket(this)" th:value="${carPart.id}" class="add_button"><img width="30" height="30" src="img/cart-plus.png"></button>
+                    </div>
+                </section>
+            </div>
+            </div>
+        </div>
+    </body>
+    <footer>
+        
+    </footer>
+</html>
+<script  th:inline="javascript">
+
+    function addToBasket(element){
+        //utilise le localstorage (bdd interne au navigateur) pour stocker l'id des pieces du paniers
+        console.log("added carpart id : " + element.value)
+    }
+
+</script>
+>>>>>>> refs/heads/PageUnique
