@@ -72,20 +72,6 @@ public class MainController {
         ModelAndView model = new ModelAndView("carPart");
         CarPart requestedCarPart = carPartService.getCarPartById(carPartId);
         model.addObject("carPart", requestedCarPart);
-<<<<<<< HEAD
-        return model;
-    }
-
-    // A Utiliser pour récupérer un tableau json contenant les pieces dans le
-    // panier
-    // pour l'utiliser : faire une req ajax get en passant l'argument
-    // concatenatedIds qui contient les ids séparés par des ; Ex: 1;2;3;4
-    @RequestMapping(value = "/getBasketItems", method = RequestMethod.GET)
-    public @ResponseBody List<CarPart> getBasketItems(@RequestParam(required = true) String concatenatedIds) {
-        List<CarPart> basketItems = new ArrayList<>();
-        for (String id : concatenatedIds.split(";")) 
-        {
-=======
         
         model.addObject("mainCategoriesList", mainCategoryService.getAllMainCategories());
         return model;
@@ -98,9 +84,8 @@ public class MainController {
     @RequestMapping(value = "/getBasketItems", method = RequestMethod.GET)
     public @ResponseBody List<CarPart> getBasketItems(@RequestParam(required = true) String concatenatedIds) {
         List<CarPart> basketItems = new ArrayList<>();
-
-        for (String id : concatenatedIds.split(";")) {
->>>>>>> refs/heads/PageUnique
+        for (String id : concatenatedIds.split(";")) 
+        {
             basketItems.add(carPartService.getCarPartById(Integer.parseInt(id)));
         }
 

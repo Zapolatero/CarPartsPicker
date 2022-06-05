@@ -2,7 +2,6 @@
 .navbar {
     overflow: hidden;
     background-color: #333;
-<<<<<<< HEAD
     font-family: Arial;
     width: 100%;
 }
@@ -279,7 +278,6 @@
     /* Links inside the dropdown */
 .dropdown-content a {
 	border: none;
-=======
     font-family: Arial
 }
     
@@ -328,7 +326,6 @@
     
     /* Links inside the dropdown */
 .dropdown-content a {
->>>>>>> refs/heads/PageUnique
     float: none;
     color: black;
     padding: 12px 16px;

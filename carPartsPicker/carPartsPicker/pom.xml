@@ -12,11 +12,7 @@
     </parent>
 
     <groupId>fr.utbm.caca</groupId>
-<<<<<<< HEAD
-    <artifactId>xxx</artifactId>
-=======
     <artifactId>pub-provider</artifactId>
->>>>>>> refs/heads/PageUnique
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
