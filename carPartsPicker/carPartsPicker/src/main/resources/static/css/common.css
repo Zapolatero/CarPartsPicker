@@ -26,8 +26,15 @@ a{
     border-radius:20px;
     background-color: #D2D2D2;
     min-width: 30%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
 
-    }
+.textDiv {
+	padding:10px;
+}
+
 .mainDiv{
     display: flex;
     float: center;
@@ -35,26 +42,18 @@ a{
     flex-direction: row;
 }
 
-.textDiv {
-	padding:10px;
-}
 @media only screen and (max-width: 800px) {
-.mainDiv {
-    flex-direction: column;
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}  
-.produit {
-    display: flex;
-    flex-direction: column;
+    .mainDiv {
+        flex-direction: column;
+        justify-items: center;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }  
 
-    text-align: LEFT;
-}
-.description{
-	margin: 0px;
-}
+    .description{
+        margin: 0px;
+    }
 }
 
 .partUniqueImg {

@@ -250,10 +250,6 @@
     cursor: pointer;
 }
 
-/* basket button */
-.basket:hover{
-}
-
 /* Add a red background color to navbar links on hover */
 .basketClass .dropdown:hover .dropbtn {
     background-color: #333;

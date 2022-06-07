@@ -38,13 +38,14 @@ input{
     border-color: red;
 }
 
+.search_bar:focus {
+    border-color: red !important;
+}
+
 .search_category:hover{
     border-color: red;
 }
 
-.search_bar:focus {
-    border-color: red !important;
-}
 
 .submit_button{
     background-color: red;
