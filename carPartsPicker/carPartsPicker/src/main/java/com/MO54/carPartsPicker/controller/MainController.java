@@ -1,13 +1,10 @@
 package com.MO54.carPartsPicker.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.MO54.carPartsPicker.model.CarPart;
 import com.MO54.carPartsPicker.model.Category;
-import com.MO54.carPartsPicker.services.CarPartService;
 import com.MO54.carPartsPicker.services.CarPartServiceImplementation;
 import com.MO54.carPartsPicker.services.CategoryServiceImplementation;
 import com.MO54.carPartsPicker.services.MainCategoryServiceImplementation;
@@ -82,8 +79,7 @@ public class MainController {
     @RequestMapping(value = "/getBasketItems", method = RequestMethod.GET)
     public @ResponseBody List<CarPart> getBasketItems(@RequestParam(required = true) String concatenatedIds) {
         List<CarPart> basketItems = new ArrayList<>();
-        for (String id : concatenatedIds.split(";")) 
-        {
+        for (String id : concatenatedIds.split(";")) {
             basketItems.add(carPartService.getCarPartById(Integer.parseInt(id)));
         }
 
