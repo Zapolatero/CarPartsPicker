@@ -11,8 +11,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>fr.utbm.caca</groupId>
-    <artifactId>pub-provider</artifactId>
+    <groupId>fr.car.parts</groupId>
+    <artifactId>car-parts-picker</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
