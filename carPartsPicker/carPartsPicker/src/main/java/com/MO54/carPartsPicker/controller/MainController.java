@@ -69,6 +69,8 @@ public class MainController {
         ModelAndView model = new ModelAndView("carPart");
         CarPart requestedCarPart = carPartService.getCarPartById(carPartId);
         model.addObject("carPart", requestedCarPart);
+        
+        model.addObject("mainCategoriesList", mainCategoryService.getAllMainCategories());
         return model;
     }
 
