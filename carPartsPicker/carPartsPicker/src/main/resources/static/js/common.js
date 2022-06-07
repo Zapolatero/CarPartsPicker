@@ -1,6 +1,6 @@
 
 
-var myList = localStorage.getItem('basket');
+let myList = localStorage.getItem('basket');
 if(myList == null)
 {
 	myList = [];
@@ -10,18 +10,22 @@ else
 	myList = JSON.parse(myList);
 }
 
+
+
 function addToBasket(element)
 {
-	if(myList[element.value] != undefined)
-	{
-		myList[element.value] = myList[element.value] + 1;
+	if(element != null){
+		if(myList[element.value] != null)
+		{
+			myList[element.value] = myList[element.value] + 1;
+		}
+		else
+		{
+			myList[element.value] = 1;
+		}
+		//utilise le localstorage (bdd interne au navigateur) pour stocker l'id des pieces du paniers
+		localStorage.setItem('basket', JSON.stringify(myList));
 	}
-	else
-	{
-		myList[element.value] = 1;
-	}
-    //utilise le localstorage (bdd interne au navigateur) pour stocker l'id des pieces du paniers
-    localStorage.setItem('basket', JSON.stringify(myList));
     
 }
 
@@ -44,32 +48,32 @@ function addEvents()
 	},false);
 	
 }
+
 function askBasketContent()
 {
 	var url = "/SpringRestHibernate/getBasketItems"
 	
-	if(myList.length == 0)
-	{
-		let basket = document.getElementById("basketDropDownContent");
-		basket.innerHTML = "basket is empty";
-		return null;
-	}
-	
-	var args = "";
+	let args = "";
 	for(let element of Object.keys(myList))
 	{
 		if(myList[element] != null)
 		{
 			args += element + ";";
-		}
-		
+		}	
 	}
 	
 	httpRequest = new XMLHttpRequest();
 	httpRequest.open('GET', url + "?concatenatedIds=" + args);
 	httpRequest.onreadystatechange = fillBasket;
 	
-    httpRequest.send();
+	if(args.length == 0)
+	{
+		let basket = document.getElementById("basketDropDownContent");
+		basket.innerHTML = "basket is empty";
+	}else{
+		httpRequest.send();
+	}
+
     
     function fillBasket()
 	{
@@ -81,32 +85,31 @@ function askBasketContent()
 		}
 		
 		response = JSON.parse(httpRequest.responseText);
-		var newDiv = "";
-		var newDiv = document.createElement("div");
+		let newDiv = document.createElement("div");
 		newDiv.className = "basketDiv";
 		newDiv.setAttribute("class", "menubasketDiv");
 		
 		
-		var articleDiv = document.createElement("div");
+		let articleDiv = document.createElement("div");
 		articleDiv.setAttribute("class", "basketArticleDiv");
 		
-		var basketEmptyDiv = document.createElement("div");
+		let basketEmptyDiv = document.createElement("div");
 		basketEmptyDiv.setAttribute("class", "basketImage");
 		
-		var basketNameDiv = document.createElement("div");
+		let basketNameDiv = document.createElement("div");
 		basketNameDiv.setAttribute("class", "menuNameDiv");
-		var basketNameNode = document.createTextNode("NAME");
+		let basketNameNode = document.createTextNode("NAME");
 		basketNameDiv.append(basketNameNode)
 		
 		
-		var basketNumberDiv = document.createElement("div");
+		let basketNumberDiv = document.createElement("div");
 		basketNumberDiv.setAttribute("class", "menuNumberDiv");
-		var basketNumberNode = document.createTextNode("AMOUNT");
+		let basketNumberNode = document.createTextNode("AMOUNT");
 		basketNumberDiv.append(basketNumberNode)
 		
-		var basketPriceDiv = document.createElement("div");
+		let basketPriceDiv = document.createElement("div");
 		basketPriceDiv.setAttribute("class", "menuPriceDiv");
-		var basketPriceNode = document.createTextNode("PRICE");
+		let basketPriceNode = document.createTextNode("PRICE");
 		basketPriceDiv.append(basketPriceNode)
 		
 		articleDiv.append(basketEmptyDiv);
@@ -115,42 +118,42 @@ function askBasketContent()
 		articleDiv.append(basketPriceDiv);
 		newDiv.append(articleDiv);
 			
-		var totalPrice  = 0;
-		var totalAmount = 0;
+		let totalPrice  = 0;
+		let totalAmount = 0;
 		for(let element of response)
 		{
-			var URL = element.imageUrl;
-			var name = element.name;
-			var number = myList[element.id];
-			var price = element.price;
+			let URL = element.imageUrl;
+			let name = element.name;
+			let number = myList[element.id];
+			let price = element.price;
 			
 			totalPrice += price * number; 
 			totalAmount += number;
 			
-			var articleDiv = document.createElement("div");
+			let articleDiv = document.createElement("div");
 			articleDiv.setAttribute("class", "basketArticleDiv");
 			
-			var imageDiv = document.createElement("img");
+			let imageDiv = document.createElement("img");
 			imageDiv.setAttribute("class", "basketImage");
 			imageDiv.setAttribute("src", URL);
 			
-			var basketNameDiv = document.createElement("div");
+			let basketNameDiv = document.createElement("div");
 			basketNameDiv.setAttribute("class", "nameDiv");
-			var basketNameNode = document.createTextNode(name);
+			let basketNameNode = document.createTextNode(name);
 			basketNameDiv.append(basketNameNode)
 			
 			
-			var basketNumberDiv = document.createElement("div");
+			let basketNumberDiv = document.createElement("div");
 			basketNumberDiv.setAttribute("class", "numberDiv");
-			var basketNumberNode = document.createTextNode(number);
+			let basketNumberNode = document.createTextNode(number);
 			basketNumberDiv.append(basketNumberNode)
 			
-			var basketPriceDiv = document.createElement("div");
+			let basketPriceDiv = document.createElement("div");
 			basketPriceDiv.setAttribute("class", "priceDiv");
-			var basketPriceNode = document.createTextNode(price*number + "€");
+			let basketPriceNode = document.createTextNode(price*number + "€");
 			basketPriceDiv.append(basketPriceNode)
 			
-			var deleteButtonDiv = document.createElement("div");
+			let deleteButtonDiv = document.createElement("div");
 			deleteButtonDiv.setAttribute("class", "deleteButtonDiv");
 			deleteButtonDiv.setAttribute("id", element.id);
 			deleteButtonDiv.innerHTML = "<button class=\"deleteButton\" onclick=\"deleteItem("+  element.id +  ")\"></button>";
@@ -163,33 +166,33 @@ function askBasketContent()
 			newDiv.append(articleDiv);
 		}
 		
-		var lineDiv = document.createElement("div");
+		let lineDiv = document.createElement("div");
 		lineDiv.setAttribute("class", "line");
 		newDiv.append(lineDiv);
 		
 		
 		
 		
-		var totalDiv = document.createElement("div");
+		let totalDiv = document.createElement("div");
 		totalDiv.setAttribute("class", "basketArticleDiv");
 
-		var totalNameDiv = document.createElement("div");
+		let totalNameDiv = document.createElement("div");
 		totalNameDiv.setAttribute("class", "totalNameDiv");
-		var totalNameNode = document.createTextNode("TOTAL");
+		let totalNameNode = document.createTextNode("TOTAL");
 		totalNameDiv.append(totalNameNode)
 		
 		
-		var totalNumberDiv = document.createElement("div");
+		let totalNumberDiv = document.createElement("div");
 		totalNumberDiv.setAttribute("class", "totalNumberDiv");
-		var totalNumberNode = document.createTextNode(totalAmount);
+		let totalNumberNode = document.createTextNode(totalAmount);
 		totalNumberDiv.append(totalNumberNode)
 		
-		var totalPriceDiv = document.createElement("div");
+		let totalPriceDiv = document.createElement("div");
 		totalPriceDiv.setAttribute("class", "totalPriceDiv");
-		var totalPriceNode = document.createTextNode(totalPrice + "€");
+		let totalPriceNode = document.createTextNode(totalPrice + "€");
 		totalPriceDiv.append(totalPriceNode)
 		
-		var clearBasketDiv = document.createElement("div");
+		let clearBasketDiv = document.createElement("div");
 		clearBasketDiv.setAttribute("class", "menuClearDiv");
 		clearBasketDiv.innerHTML = "<button class=\"clearButton\" onclick=\"clearBasket()\"></button>";
 
@@ -199,7 +202,7 @@ function askBasketContent()
 		totalDiv.append(clearBasketDiv);
 		newDiv.append(totalDiv);
 		
-		var payButtonDiv = document.createElement("div");
+		let payButtonDiv = document.createElement("div");
 		payButtonDiv.setAttribute("class", "basketArticleDiv");
 		payButtonDiv.innerHTML = "<button class=\"payButton\" onclick=\"pay()\"> PAY</button>";
 		newDiv.append(payButtonDiv);
@@ -232,6 +235,6 @@ function deleteItem(id)
 	askBasketContent();
 	
 	let mouseEnter = document.getElementById("dropDownMouseOver");
-	var event = new Event('mouseenter');  
+	let event = new Event('mouseenter');  
 	mouseEnter.dispatchEvent(event);
 }
