@@ -13,9 +13,10 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/carpartspicker?serverTimezone=UTC
 
-    #Local use :
-    username: louis
-    password: zapo
+  ### Complete and uncomment for local use
+  #Local use :
+  # username: your_sql_username
+  # password: your_sql_passwd
 
   servlet:
     multipart:

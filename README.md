@@ -7,7 +7,14 @@ This project has been programmed in java using the SpringBoot framework.
 
 ## Run the project
 
-In order to run the project, you must first create and populate the database. To do this, you will have to run the sql script "MySQL_BDD" located at the root of the project.
+In order to run the project, you must first create and populate the database. To do this, you will have to run the sql script "MySQL_BDD" located at the root of the project. You will then have to edit the src/main/ressources/application.yml file and uncomment these three lines, indicating your username and password to connect to your mysql database.
+
+```yml
+#Local use :
+# username: your_sql_username
+# password: your_sql_passwd
+```
+
 Then open it with eclipse or IntelliJ IDEA and run it.
 
 ## Routes and pages
